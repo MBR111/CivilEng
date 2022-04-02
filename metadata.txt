@@ -1,0 +1,47 @@
+# This file contains metadata for your plugin.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=Civil Engineering Tools Provider
+qgisMinimumVersion=3.0
+description= Tools to automate the early design of civil engineering projects. This a Provider with two tools: Reservoir and Earthworks
+version=0.1
+author=Iñigo Marin
+email=proy.mbr.gmail.com
+
+about=Reservoir :Based on and existin terrain DEM (raster file), the dam axis location (line or polygon vector layer), the top of dam level, the depth from the top to the water surface, and providing a point upstream of the dam, the plugin returns a modifed DEM raster file with the existing terrain modified with the dam, and a water depth raster file of the flooded area (as result of running r.lake). “\n” Earthworks : Based on and existin terrain DEM (raster file), the platform to be design (line or polygon vector layer), the level and the cut and fill slopes, the plugin returns a modifed DEM raster file with the existing terrain modified with the earthwork.
+
+tracker=https://github.com/MBR111/CivilEng/issues
+repository=https://github.com/MBR111/CivilEng                                                                                                                                                                                                                                                                     
+# End of mandatory metadata
+
+# Recommended items:
+
+hasProcessingProvider=yes
+# Uncomment the following line and add your changelog:
+# changelog=
+
+# Tags are comma separated with spaces allowed
+tags=python, reservoir, dam, hidrology, lake, earthworks
+
+homepage=https://github.com/MBR111/CivilEng
+category=Analysis
+icon=CivilEng.png
+# experimental flag
+experimental=True
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+
+# Since QGIS 3.8, a comma separated list of plugins to be installed
+# (or upgraded) can be specified.
+# Check the documentation for more information.
+# plugin_dependencies=
+
+Category of the plugin: Raster, Vector, Database or Web
+# category=
+
+# If the plugin can run on QGIS Server.
+server=False
+
