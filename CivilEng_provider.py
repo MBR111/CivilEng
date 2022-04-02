@@ -35,7 +35,8 @@ from PyQt5.QtGui import QIcon
 from os import path
 from .Reservoir_algorithm import ReservoirAlgorithm
 from .Earthworks_algorithm import EarthworksAlgorithm
-
+from .LRS_algorithm import LRSAlgorithm
+           
 class CivilEngProvider(QgsProcessingProvider):
 
     def __init__(self):
@@ -57,6 +58,7 @@ class CivilEngProvider(QgsProcessingProvider):
         """
         self.addAlgorithm(ReservoirAlgorithm())
         self.addAlgorithm(EarthworksAlgorithm())
+        self.addAlgorithm(LRSAlgorithm())
         # add additional algorithms here
         # self.addAlgorithm(MyOtherAlgorithm())
         

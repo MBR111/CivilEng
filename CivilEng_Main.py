@@ -58,3 +58,5 @@ class CivilEngPlugin(object):
 
     def unload(self):
         QgsApplication.processingRegistry().removeProvider(self.provider)
+        
+

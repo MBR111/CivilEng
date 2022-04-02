@@ -75,7 +75,7 @@ class ReservoirAlgorithm(QgsProcessingAlgorithm):
         self.addParameter(QgsProcessingParameterVectorLayer('dam_vector_layer', 'Dam vector layer', types=[QgsProcessing.TypeVector], defaultValue=None))
         self.addParameter(QgsProcessingParameterNumber('dam_top_level', 'Top dam level', type=QgsProcessingParameterNumber.Double, minValue=0, defaultValue=845))
         self.addParameter(QgsProcessingParameterNumber('water_depth_from_top', 'Water depth from top', type=QgsProcessingParameterNumber.Double, defaultValue=1))
-        self.addParameter(QgsProcessingParameterPoint('reservoir_inner_point', 'Point inside the reservoir', defaultValue='555815.730337,4751083.25132'))
+        self.addParameter(QgsProcessingParameterPoint('reservoir_inner_point', 'Point inside the reservoir', defaultValue='555799.52,4751025.14'))
         self.addParameter(QgsProcessingParameterNumber('dam_wall_slope', 'Dam wall slope 1:T', type=QgsProcessingParameterNumber.Double, defaultValue=3))
         self.addParameter(QgsProcessingParameterRasterDestination('new_lake_raster', 'New lake raster layer', createByDefault=True, defaultValue=''))
         self.addParameter(QgsProcessingParameterRasterDestination('new_DEM_raster', 'New DEM with dam raster layer', createByDefault=True, defaultValue=''))
@@ -199,6 +199,16 @@ class ReservoirAlgorithm(QgsProcessingAlgorithm):
         outputs['RasterCalculator'] = processing.run('gdal:rastercalculator', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
         results['new_DEM_raster'] = outputs['RasterCalculator']['OUTPUT']
 
+        # Set layer style
+        # Asigna el estilo de Pks
+        
+        alg_params = {
+            'INPUT': outputs['RasterCalculator']['OUTPUT'],
+            'STYLE': path.dirname(__file__) +'/DEM_Style.qml' 
+        }              
+        
+        outputs['SetLayerStyle_DEM'] = processing.run('native:setlayerstyle', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
+
         # r.lake
         alg_params = {
             '-n': False,
@@ -214,6 +224,17 @@ class ReservoirAlgorithm(QgsProcessingAlgorithm):
         }
         outputs['Rlake'] = processing.run('grass7:r.lake', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
         results['new_lake_raster'] = outputs['Rlake']['lake']
+
+        # Set layer style
+        # Asigna el estilo
+        
+        alg_params = {
+            'INPUT': outputs['Rlake']['lake'],
+            'STYLE': path.dirname(__file__) +'/Lake_Style.qml' 
+        }              
+        
+        outputs['SetLayerStyle_Lake'] = processing.run('native:setlayerstyle', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
+   
 
         feedback.setCurrentStep(5)
         if feedback.isCanceled():
