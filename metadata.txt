@@ -5,12 +5,12 @@
 [general]
 name=Civil Engineering Tools Provider
 qgisMinimumVersion=3.22
-description= Tools to automate the early design of civil engineering projects. This is a Provider with two tools: Reservoir and Earthworks
+description= Tools to automate the early design of civil engineering projects. This is a Provider with three tools: Reservoir, Earthworks and LRS
 version=0.1
 author=Iñigo Marin
 email=proy.mbr.gmail.com
 
-about=Reservoir creates a basic dam design and calculates the related flooding area. Earthworks create the cut & fill earthwork for a platform area.
+about=Reservoir creates a basic dam design and calculates the related flooding area. Earthworks create the cut & fill earthwork for a platform area. LRS creates marks and text for linear referencing system of polylines.
 
 tracker=https://github.com/MBR111/CivilEng/issues
 repository=https://github.com/MBR111/CivilEng                                                                                                                                                                                                                                                                     
