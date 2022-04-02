@@ -17,7 +17,7 @@ Based on and existing terrain DEM (raster file), the dam axis location (line or 
 
 
 # Earthworks: 
-Based on and existing terrain DEM (raster file), a platform design (line or polygon vector layer), the platform base level, and the cut and fill slopes, the plugin returns a modifed DEM raster file with the earthwork.
+Based on and existing terrain DEM (raster file), a platform design (line or polygon vector layer), the platform constant base level, and the cut and fill slopes, the plugin returns a modifed DEM raster file with the earthwork.
 
 ![Earthworks Sample image](/support/LRS_sample_image.png)
 
