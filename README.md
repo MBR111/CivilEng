@@ -22,4 +22,4 @@ Based on and existing terrain DEM (raster file), a platform design (line or poly
 ![Earthworks Sample image](/support/LRS_sample_image.png)
 
 # LRS:
-Based on and existing polyline (vector file), the linear referencing marks and text are created fer each 25 and 100 m intervals.
+Based on and existing polyline (vector file), the linear referencing marks and text are created for each 25 and 100 m intervals.
