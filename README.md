@@ -14,7 +14,9 @@ Based on and existing terrain DEM (raster file), the dam crest axis location (li
 
 ![Reservoir Sample image](/support/Reservoir_sample_image.png)
 
+The initial required data is presented graphically in the following miage as well as the results:
 
+![Reservoir Sample image](/support/Reservoir2.jpg)
 
 # Earthworks: 
 Based on and existing terrain DEM (raster file), a platform design (line or polygon vector layer), the platform constant base level, and the cut and fill slopes, the plugin returns a modifed DEM raster file with the earthwork.
