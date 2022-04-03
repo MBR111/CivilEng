@@ -15,7 +15,7 @@ Based on and existing terrain DEM (raster file), the dam crest axis location (li
   <img width="650" src="/support/Reservoir_sample_image.png">
 </p>
 
-The initial required data is presented graphically in the following image as well as the results for a test sites:
+The initial required data is presented graphically in the following image as well as the results for a test site:
   
 <p align="center">
   
