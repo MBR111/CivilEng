@@ -14,14 +14,31 @@ Based on and existing terrain DEM (raster file), the dam crest axis location (li
 
 ![Reservoir Sample image](/support/Reservoir_sample_image.png)
 
-The initial required data is presented graphically in the following miage as well as the results:
+The initial required data is presented graphically in the following image as well as the results for a test sites:
 
-![Reservoir Sample image](/support/Reservoir2.jpg)
+![Reservoir Sample image](/support/Reservoir2.JPG)
 
 # Earthworks: 
 Based on and existing terrain DEM (raster file), a platform design (line or polygon vector layer), the platform constant base level, and the cut and fill slopes, the plugin returns a modifed DEM raster file with the earthwork.
 
-![Earthworks Sample image](/support/LRS_sample_image.png)
+In the two attached images the initial data and the result of the process are presented for a test site.
+
+![Earthworks Sample image](/support/Trench4.JPG)
+
+
+![Earthworks Sample image](/support/Trench3.JPG)
+
+
+Another images of different tests can be seen below.
+
+![Earthworks Sample image](/support/Trench.JPG)
+
+![Earthworks Sample image](/support/Pile2.JPG)
+
+![Earthworks Sample image](/support/Sink.JPG)
+
 
 # LRS:
 Based on and existing polyline (vector file), the linear referencing marks and text are created for each 25 and 100 m intervals.
+
+![LRS Sample image](/support/LRS_sample_image.png)
