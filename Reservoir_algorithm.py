@@ -73,10 +73,10 @@ class ReservoirAlgorithm(QgsProcessingAlgorithm):
 
         self.addParameter(QgsProcessingParameterRasterLayer('DEM', 'Existing DEM raster layer', defaultValue=None))
         self.addParameter(QgsProcessingParameterVectorLayer('dam_vector_layer', 'Dam vector layer', types=[QgsProcessing.TypeVector], defaultValue=None))
-        self.addParameter(QgsProcessingParameterNumber('dam_top_level', 'Top dam level', type=QgsProcessingParameterNumber.Double, minValue=0, defaultValue=845))
-        self.addParameter(QgsProcessingParameterNumber('water_depth_from_top', 'Water depth from top', type=QgsProcessingParameterNumber.Double, defaultValue=1))
-        self.addParameter(QgsProcessingParameterPoint('reservoir_inner_point', 'Point inside the reservoir', defaultValue='555799.52,4751025.14'))
-        self.addParameter(QgsProcessingParameterNumber('dam_wall_slope', 'Dam wall slope 1:T', type=QgsProcessingParameterNumber.Double, defaultValue=3))
+        self.addParameter(QgsProcessingParameterNumber('dam_top_level', 'Top dam level', type=QgsProcessingParameterNumber.Double, defaultValue=0))
+        self.addParameter(QgsProcessingParameterNumber('water_depth_from_top', 'Water depth from top', type=QgsProcessingParameterNumber.Double, minValue=0, defaultValue=1))
+        self.addParameter(QgsProcessingParameterPoint('reservoir_inner_point', 'Point inside the reservoir'))
+        self.addParameter(QgsProcessingParameterNumber('dam_wall_slope', 'Dam wall slope 1:H', type=QgsProcessingParameterNumber.Double, minValue=0, defaultValue=3))
         self.addParameter(QgsProcessingParameterRasterDestination('new_lake_raster', 'New lake raster layer', createByDefault=True, defaultValue=''))
         self.addParameter(QgsProcessingParameterRasterDestination('new_DEM_raster', 'New DEM with dam raster layer', createByDefault=True, defaultValue=''))
 
@@ -295,5 +295,30 @@ class ReservoirAlgorithm(QgsProcessingAlgorithm):
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
 
+    def shortHelpString(self):
+        return """<html><body><p>Reservoir algorithm creates a dam on an existing DEM and calculates the flooded area</p>
+<h2>Input parameters</h2>
+<h3>Existing DEM raster layer</h3>
+<p>Existing initial terrain DEM to be modified</p>
+<h3>Dam vector layer</h3>
+<p>Vector layer (line or polygon) containing just one line or polyline representing the crest of the dam</p>
+<h3>Top dam level</h3>
+<p>Absolute level of the dam crest</p>
+<h3>Water depth from top</h3>
+<p>Relative level of the water surface below the dam crest</p
+<h3>Point inside the reservoir</h3>
+<p>Point upstream of the dam wall inside the flooded area</p>
+<h3>Dam wall slope</h3>
+<p>Slope of the walls/enbankments of the dam as rate of vertical to horizontal lenght (1:H)</p>
+<h2>Outputs</h2>
+<h3>New lake raster layer</h3>
+<p>New raster layer representing the water depth</p>
+<h3>New DEM with dam raster layer</h3>
+<p>Modified DEM raster layer with the dam</p>
+<br><p align="right">Algorithm author: Iñigo Marin</p><p align="right">Algorithm version: v. 0.1</p></body></html>"""
+
+    def helpUrl(self):
+        return 'https://github.com/MBR111/CivilEng'
+        
     def createInstance(self):
         return ReservoirAlgorithm()

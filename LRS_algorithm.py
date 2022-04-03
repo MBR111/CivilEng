@@ -62,8 +62,8 @@ class LRSAlgorithm(QgsProcessingAlgorithm):
     
         # Seleccion la capa para dibujar pKs
     
-        self.addParameter(QgsProcessingParameterMapLayer('Layer', 'Capa de Entrada', defaultValue=None, types=[QgsProcessing.TypeVectorLine]))
-        self.addParameter(QgsProcessingParameterFeatureSink('CapaDeSalida', 'Capa de Salida', type=QgsProcessing.TypeVectorPoint, createByDefault=True, supportsAppend=True, defaultValue=None))
+        self.addParameter(QgsProcessingParameterMapLayer('input_vector_layer', 'Input line vector layer', defaultValue=None, types=[QgsProcessing.TypeVectorLine]))
+        self.addParameter(QgsProcessingParameterFeatureSink('output_vector_layer', 'Output point vector layer with LRS marks & text', type=QgsProcessing.TypeVectorPoint, createByDefault=True, supportsAppend=True, defaultValue=None))
 
     def processAlgorithm(self, parameters, context, model_feedback):
     
@@ -80,13 +80,13 @@ class LRSAlgorithm(QgsProcessingAlgorithm):
         alg_params = {
             'DISTANCE': 25,
             'END_OFFSET': 0,
-            'INPUT': parameters['Layer'],
+            'INPUT': parameters['input_vector_layer'],
             'START_OFFSET': 0,
-            'OUTPUT': parameters['CapaDeSalida']
+            'OUTPUT': parameters['output_vector_layer']
         }
         
         outputs['PointsAlongGeometry'] = processing.run('native:pointsalonglines', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
-        results['CapaDeSalida'] = outputs['PointsAlongGeometry']['OUTPUT']
+        results['output_vector_layer'] = outputs['PointsAlongGeometry']['OUTPUT']
 
         feedback.setCurrentStep(1)
         if feedback.isCanceled():
@@ -149,5 +149,18 @@ class LRSAlgorithm(QgsProcessingAlgorithm):
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
 
+    def shortHelpString(self):
+        return """<html><body><p>LRS creates the linear referencing marks and text for each 25 and 100 m. intervals, based on and existing line/polyline (vector file), using the "Points along geometry" algorithm" .</p>
+<h2>Input parameters</h2>
+<h3>Input line vector layer</h3>
+<p>Input line vector layer representing an axis</p>
+<h2>Outputs</h2>
+<h3>Output point vector layer with LRS marks & text</h3>
+<p>Output vector Point layer with an associated style representing the linear referencing marks and text for each 25 and 100 m. intervals</p>
+<br><p align="right">Algorithm author: Iñigo Marin</p><p align="right">Algorithm version: v. 0.1</p></body></html>"""
+
+    def helpUrl(self):
+        return 'https://github.com/MBR111/CivilEng'
+        
     def createInstance(self):
         return LRSAlgorithm()

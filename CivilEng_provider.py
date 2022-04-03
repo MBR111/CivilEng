@@ -32,10 +32,13 @@ __revision__ = '$Format:%H$'
 
 from qgis.core import QgsProcessingProvider
 from PyQt5.QtGui import QIcon
-from os import path
+from os import path  
 from .Reservoir_algorithm import ReservoirAlgorithm
 from .Earthworks_algorithm import EarthworksAlgorithm
-from .LRS_algorithm import LRSAlgorithm
+from .LRS_algorithm import LRSAlgorithm             
+
+
+
            
 class CivilEngProvider(QgsProcessingProvider):
 
@@ -44,12 +47,12 @@ class CivilEngProvider(QgsProcessingProvider):
         Default constructor.
         """
         QgsProcessingProvider.__init__(self)
-
+        
     def unload(self):
         """
         Unloads the provider. Any tear-down steps required by the provider
-        should be implemented here.
-        """
+        should be implemented here.       
+        """                               
         pass
 
     def loadAlgorithms(self):
@@ -87,11 +90,5 @@ class CivilEngProvider(QgsProcessingProvider):
         """
         return QIcon(path.dirname(__file__) +'/Civileng.png')
 
-    def longName(self):
-        """
-        Returns the a longer version of the provider name, which can include
-        extra details such as version numbers. E.g. "Lastools LIDAR tools
-        (version 2.2.1)". This string should be localised. The default
-        implementation returns the same string as name().
-        """
-        return self.name('"CivilEng1"')
+ 
+      

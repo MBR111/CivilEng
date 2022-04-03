@@ -69,10 +69,10 @@ class EarthworksAlgorithm(QgsProcessingAlgorithm):
 
         self.addParameter(QgsProcessingParameterRasterLayer('DEM', 'Existing DEM raster layer', defaultValue=None))
         self.addParameter(QgsProcessingParameterVectorLayer('platform', 'Platform vector layer', types=[QgsProcessing.TypeVector], defaultValue=None))
-        self.addParameter(QgsProcessingParameterNumber('platform_level', 'Platform base level', type=QgsProcessingParameterNumber.Double, minValue=0, defaultValue=850))
-        self.addParameter(QgsProcessingParameterNumber('cut_slope', 'Cut Slope 1:H', type=QgsProcessingParameterNumber.Double, defaultValue=1))
-        self.addParameter(QgsProcessingParameterNumber('fill_slope', 'Fill Slope 1:H', type=QgsProcessingParameterNumber.Double, defaultValue=3))
-        self.addParameter(QgsProcessingParameterRasterDestination('new_DEM', 'Modified DEM', createByDefault=True, defaultValue=''))
+        self.addParameter(QgsProcessingParameterNumber('platform_level', 'Platform base level', type=QgsProcessingParameterNumber.Double, defaultValue=0))
+        self.addParameter(QgsProcessingParameterNumber('cut_slope', 'Cut Slope 1:H', type=QgsProcessingParameterNumber.Double, minValue=0, defaultValue=1))
+        self.addParameter(QgsProcessingParameterNumber('fill_slope', 'Fill Slope 1:H', type=QgsProcessingParameterNumber.Double, minValue=0,  defaultValue=1))
+        self.addParameter(QgsProcessingParameterRasterDestination('new_DEM', 'Modified DEM raster layer', createByDefault=True, defaultValue=''))
 
 
     def processAlgorithm(self, parameters, context, model_feedback):
@@ -287,6 +287,28 @@ class EarthworksAlgorithm(QgsProcessingAlgorithm):
 
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
+
+    def shortHelpString(self):
+        return """<html><body><p>Earthworks algorithm modifies a DEM carving or filing it from a vector layer representing the baseline of the eartwork</p>
+<h2>Input parameters</h2>
+<h3>Existing DEM raster layer</h3>
+<p>Existing initial terrain DEM to be modified</p>
+<h3>Platform vector layer</h3>
+<p>Vector layer (line or polygon) representing the baseline or base platform from wich the earthwork or DEM modification is going to be performed</p>
+<h3>Platform base level</h3>
+<p>Absolute level of the baseline or base platform from wich the earthwork or DEM modification is going to be performed</p>
+<h3>Cut slope</h3>
+<p> Cut slope of the earthwork as rate of vertical to horizontal lenght (1:H)</p>
+<h3>Fill slope</h3>
+<p> Fill slope of the earthwork as rate of vertical to horizontal lenght (1:H)</p>
+<h2>Outputs</h2>
+<h3>Modified DEM raster layer</h3>
+<p>Modified DEM raster layer as result of the earthwork</p>
+<br><p align="right">Algorithm author: Iñigo Marin</p><p align="right">Algorithm version: v. 0.1</p></body></html>"""
+
+    def helpUrl(self):
+        return 'https://github.com/MBR111/CivilEng'
+
 
     def createInstance(self):
         return EarthworksAlgorithm()

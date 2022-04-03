@@ -34,7 +34,11 @@ import os
 import sys
 import inspect
 
+from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtGui import QIcon
+
 from qgis.core import QgsProcessingAlgorithm, QgsApplication
+import processing
 from .CivilEng_provider import CivilEngProvider
 
 cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
@@ -42,21 +46,63 @@ cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
 if cmd_folder not in sys.path:
     sys.path.insert(0, cmd_folder)
 
-
+      
 class CivilEngPlugin(object):
 
-    def __init__(self):
+    def __init__(self, iface):
         self.provider = None
-
+        self.iface = iface
+        
     def initProcessing(self):
         """Init Processing provider for QGIS >= 3.8."""
         self.provider = CivilEngProvider()
         QgsApplication.processingRegistry().addProvider(self.provider)
-
+        
+        
     def initGui(self):
         self.initProcessing()
+        icon = os.path.join(os.path.join(cmd_folder, 'CivilEng.png'))
+        self.action = QAction(
+            QIcon(icon),
+            u"Reservoir", self.iface.mainWindow())
+        self.action.triggered.connect(self.run_Reservoir)
+        self.iface.addPluginToMenu(u"&CivilEng", self.action)
+        self.iface.addToolBarIcon(self.action)
 
+        icon2 = os.path.join(os.path.join(cmd_folder, 'Earthworks.png'))
+        self.action2 = QAction(
+            QIcon(icon2),
+            u"Earthworks", self.iface.mainWindow())
+        self.action2.triggered.connect(self.run_Earthworks)
+        self.iface.addPluginToMenu(u"&CivilEng", self.action2)
+        self.iface.addToolBarIcon(self.action2)    
+
+        icon3 = os.path.join(os.path.join(cmd_folder, 'LRS.png'))
+        self.action3 = QAction(
+            QIcon(icon3),
+            u"LRS", self.iface.mainWindow())
+        self.action3.triggered.connect(self.run_LRS)
+        self.iface.addPluginToMenu(u"&CivilEng", self.action3)
+        self.iface.addToolBarIcon(self.action3)   
+        
+                        
     def unload(self):
         QgsApplication.processingRegistry().removeProvider(self.provider)
+        self.iface.removePluginMenu(u"&CivilEng", self.action)
+        self.iface.removeToolBarIcon(self.action)
+        self.iface.removePluginMenu(u"&CivilEng", self.action2)
+        self.iface.removeToolBarIcon(self.action2)
+        self.iface.removePluginMenu(u"&CivilEng", self.action3)
+        self.iface.removeToolBarIcon(self.action3) 
+        del self.action
+        del self.action2
+        del self.action3
         
-
+    def run_Reservoir(self):
+      processing.execAlgorithmDialog("CivilEng:Reservoir")
+      
+    def run_Earthworks(self):
+      processing.execAlgorithmDialog("CivilEng:Earthworks")
+      
+    def run_LRS(self):
+      processing.execAlgorithmDialog("CivilEng:LRS")

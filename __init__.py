@@ -36,4 +36,5 @@ def classFactory(iface):  # pylint: disable=invalid-name
     """
     #
     from .CivilEng_Main import CivilEngPlugin
-    return CivilEngPlugin()
+
+    return CivilEngPlugin(iface)
