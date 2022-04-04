@@ -11,7 +11,7 @@ email=proy.mbr.gmail.com
 Tools to automate the early design of civil engineering projects. This is a Qgis provider with three tools: Reservoir, Earthworks and LRS.
 
 # Reservoir:
-Based on and existing terrain DEM (raster file), the dam crest axis location (line or polygon vector layer), the top of dam level, the depth from the top of the dam to the water surface, the dam wall slope, and providing a point upstream of the dam, inside the reservoir, the plugin returns a new DEM raster file with the existing terrain modified with the dam, and a water depth raster file of the flooded area (as result of running r.lake). 
+Based on and existing terrain DEM (raster file), the dam crest axis location (line or polygon vector layer), the top of dam level, the depth from the top of the dam to the water surface, the dam wall slope, and providing a point upstream of the dam, inside the reservoir, the plugin returns a new DEM raster file with the existing terrain modified with the dam, and a water depth raster file of the flooded area. 
 
 <p align="center">
   <img width="650" src="/support/Reservoir_sample_image.png">
