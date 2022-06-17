@@ -6,7 +6,7 @@
 name=Civil Engineering Tools Provider
 qgisMinimumVersion=3.22
 description= Tools to automate the early design of civil engineering projects. This is a Provider with three tools: Reservoir, Earthworks and LRS
-version=0.1
+version=0.2
 author=Iñigo Marin
 email=proy.mbr.gmail.com
 
