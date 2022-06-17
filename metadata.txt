@@ -20,10 +20,15 @@ repository=https://github.com/MBR111/CivilEng
 
 hasProcessingProvider=yes
 # Uncomment the following line and add your changelog:
-# changelog=
+changelog=
 
+    0.2 - Bug fix: Solved an error in the Earthworks algorithm when using a raster DEM width or height different from 1
+    0.1 - Initial version
+    
 # Tags are comma separated with spaces allowed
-tags=python, reservoir, dam, hidrology, lake, earthworks
+tags=reservoir, dam, hidrology, lake, earthworks
+
+
 
 homepage=https://github.com/MBR111/CivilEng
 category=Analysis
