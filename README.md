@@ -1,7 +1,7 @@
  <img width="50" src="/Civileng.png">
 
 # CivilEng. Qgis provider for Civil Engineering tools
-Version=0.1
+Version=0.2
 
 Author=Iñigo Marin
 
